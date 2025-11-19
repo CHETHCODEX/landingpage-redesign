@@ -1,20 +1,27 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Landing Page Redesign Sprint",
-  description: "Improve the UI/UX of this basic landing page.",
-};
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./globals.css";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: true,
+    });
+  }, []);
+
   return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className="antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 transition-colors duration-300">
+        {children}
+      </body>
     </html>
   );
 }
